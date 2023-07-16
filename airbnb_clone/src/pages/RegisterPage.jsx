@@ -8,7 +8,11 @@ export const RegisterPage = () => {
 
   function registerUser(e) {
     e.preventDefault();
-    axios.get("http://localhost:8888/test");
+    axios.post("/register", {
+      name,
+      email,
+      password,
+    });
   }
   return (
     <div className="mt-4 grow flex items-center justify-around">
