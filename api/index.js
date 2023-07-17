@@ -2,11 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cookieParser = require("cookie-parser");
 const userRegisterRoute = require("./routes/userRegisterRoute");
-
+const userLoginRoute = require("./routes/userLoginRoute");
+const userProfile = require("./routes/userProfile");
+//setup express app
 const app = express();
 app.use(express.json());
-app.use(cors());
+// let’s you use the cookieParser in your application
+app.use(cookieParser());
+
 app.use(
   cors({
     credentials: true,
@@ -30,6 +35,9 @@ app.get("/test", (req, res) => {
 });
 
 app.use("/register", userRegisterRoute);
+app.use("/login", userLoginRoute);
+app.use("/profile", userProfile);
+
 app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Listening to port`, process.env.PORT);
 });
