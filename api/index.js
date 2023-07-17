@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const userRegisterRoute = require("./routes/userRegisterRoute");
 const userLoginRoute = require("./routes/userLoginRoute");
 const userProfile = require("./routes/userProfile");
+const userLogout = require("./routes/userLogout");
 //setup express app
 const app = express();
 app.use(express.json());
@@ -15,7 +16,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "http://127.0.0.1:3000",
   })
 );
 
@@ -37,7 +38,7 @@ app.get("/test", (req, res) => {
 app.use("/register", userRegisterRoute);
 app.use("/login", userLoginRoute);
 app.use("/profile", userProfile);
-
+app.use("/logout", userLogout);
 app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Listening to port`, process.env.PORT);
 });

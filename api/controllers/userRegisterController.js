@@ -52,4 +52,8 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser };
+const logout = (req, res) => {
+  res.cookie("token", "").json(true);
+};
+
+module.exports = { createUser, loginUser, logout };
