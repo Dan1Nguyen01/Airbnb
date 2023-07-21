@@ -7,12 +7,14 @@ const userRegisterRoute = require("./routes/userRegisterRoute");
 const userLoginRoute = require("./routes/userLoginRoute");
 const userProfile = require("./routes/userProfile");
 const userLogout = require("./routes/userLogout");
+const uploadRoute = require("./routes/uploadRoute");
 //setup express app
 const app = express();
 app.use(express.json());
 // let’s you use the cookieParser in your application
 app.use(cookieParser());
 
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(
   cors({
     credentials: true,
@@ -39,6 +41,18 @@ app.use("/register", userRegisterRoute);
 app.use("/login", userLoginRoute);
 app.use("/profile", userProfile);
 app.use("/logout", userLogout);
+app.use("/upload-by-link", uploadRoute);
+
+//upload from local
+const localUploadRoute = require("./routes/localUploadRoute");
+const multer = require("multer");
+const photoMiddleware = multer({ dest: "uploads" });
+app.use("/upload", photoMiddleware.array("photos", 100), localUploadRoute);
+
+//
+const placesRoute = require("./routes/placesRoute");
+app.use("/places", placesRoute);
+
 app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Listening to port`, process.env.PORT);
 });
