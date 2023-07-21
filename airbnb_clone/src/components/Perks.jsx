@@ -1,5 +1,4 @@
 import React from "react";
-
 const Perks = ({ selected, onChange }) => {
   function handleCbClick(e) {
     // onChange([...selected, name]);
@@ -16,6 +15,7 @@ const Perks = ({ selected, onChange }) => {
         <input
           type="checkbox"
           name="wifi"
+          checked={selected.includes("wifi")}
           className=""
           onChange={handleCbClick}
         />
@@ -39,6 +39,7 @@ const Perks = ({ selected, onChange }) => {
         <input
           type="checkbox"
           name="parking"
+          checked={selected.includes("parking")}
           className=""
           onChange={handleCbClick}
         />
@@ -63,6 +64,7 @@ const Perks = ({ selected, onChange }) => {
         <input
           type="checkbox"
           name="tv"
+          checked={selected.includes("tv")}
           className=""
           onChange={handleCbClick}
         />
@@ -85,7 +87,12 @@ const Perks = ({ selected, onChange }) => {
       </label>
 
       <label className="flex gap-2 border p-4 justify-center rounded-2xl item-center cursor-pointer">
-        <input type="checkbox" name="radio" onChange={handleCbClick} />
+        <input
+          type="checkbox"
+          name="radio"
+          checked={selected.includes("radio")}
+          onChange={handleCbClick}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -107,6 +114,7 @@ const Perks = ({ selected, onChange }) => {
         <input
           type="checkbox"
           name="pets"
+          checked={selected.includes("pets")}
           className=""
           onChange={handleCbClick}
         />
@@ -131,6 +139,7 @@ const Perks = ({ selected, onChange }) => {
         <input
           type="checkbox"
           name="entrance"
+          checked={selected.includes("entrance")}
           className=""
           onChange={handleCbClick}
         />
