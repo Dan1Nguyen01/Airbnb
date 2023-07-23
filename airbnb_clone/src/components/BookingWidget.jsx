@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { differenceInCalendarDays } from "date-fns";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 const BookingWidget = ({ place }) => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
@@ -7,6 +9,8 @@ const BookingWidget = ({ place }) => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
+  const [redirect, setRedirect] = useState("");
+
   let numberOfNights = 0;
   if (checkIn && checkOut) {
     numberOfNights = differenceInCalendarDays(
@@ -16,6 +20,30 @@ const BookingWidget = ({ place }) => {
   }
 
   let totalPrice = place.price * numberOfNights;
+
+  const bookYourPlace = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/booking", {
+        place: place._id,
+        checkIn,
+        checkOut,
+        numberOfGuests,
+        price: totalPrice,
+        name,
+        email,
+        phone: mobile,
+      });
+      const bookingId = response.data._id;
+      setRedirect(`/account/bookings/${bookingId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (redirect) {
+    return <Navigate to={redirect} />;
+  }
 
   return (
     <div className="bg-white shadow p-4 rounded-2xl">
@@ -30,6 +58,7 @@ const BookingWidget = ({ place }) => {
               type="date"
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
+              required
             />
           </div>
           <div className=" py-3 px-4 border-l">
@@ -38,6 +67,7 @@ const BookingWidget = ({ place }) => {
               type="date"
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
+              required
             />
           </div>
         </div>
@@ -47,6 +77,7 @@ const BookingWidget = ({ place }) => {
             type="number"
             value={numberOfGuests}
             onChange={(e) => setNumberOfGuests(e.target.value)}
+            required
           />
         </div>
         {numberOfNights > 0 && (
@@ -57,14 +88,16 @@ const BookingWidget = ({ place }) => {
               placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
 
             <label htmlFor="">Email: </label>
             <input
-              type="text"
+              type="email"
               placeholder="abc@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
 
             <label htmlFor="">Phone number: </label>
@@ -73,17 +106,18 @@ const BookingWidget = ({ place }) => {
               placeholder="123 456 7890"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
+              required
             />
           </div>
         )}
       </div>
-      <button className="primary mt-4">
+      <button className="primary mt-4" onClick={bookYourPlace}>
         Book this place
-        {checkIn && checkOut && (
+        {/* {checkIn && checkOut && (
           <>
             <span>$ {totalPrice}</span>
           </>
-        )}
+        )} */}
       </button>
     </div>
   );

@@ -174,11 +174,11 @@ const SinglePlacePage = () => {
           <div className="my-4">
             <h2 className="font-semibold text-2xl">Description</h2>
             <h5 className="py-1">About this place</h5>
-            {place.description}
+            {place?.description}
           </div>
-          Check-in: {place.checkIn} <br />
-          Check-out: {place.checkOut} <br />
-          Max number of guests: {place.maxGuests}
+          Check-in: {place?.checkIn} <br />
+          Check-out: {place?.checkOut} <br />
+          Max number of guests: {place?.maxGuests}
         </div>
         <div>
           <BookingWidget place={place} />
