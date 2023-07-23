@@ -2,9 +2,9 @@ import React from "react";
 
 const AddressLink = ({ children, className = null }) => {
   if (!className) {
-    className = "my-3 block";
+    className = "flex my-3 ";
   }
-  className += "flex gap-1 font-semibold underline";
+  className += " gap-1 font-semibold underline";
   return (
     <div>
       <a
