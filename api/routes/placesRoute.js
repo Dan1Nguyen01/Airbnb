@@ -5,14 +5,17 @@ const {
   yourPlaces,
   getAPlace,
   updateAPlace,
+  places,
 } = require("../controllers/placesController");
 
-router.get("/", yourPlaces);
+router.get("/user-places", yourPlaces);
 
 router.get("/:id", getAPlace);
 
 router.post("/", newPlaces);
 
 router.put("/", updateAPlace);
+
+router.get("/", places);
 
 module.exports = router;

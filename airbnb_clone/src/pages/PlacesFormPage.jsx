@@ -15,6 +15,7 @@ const PlacesFormPage = () => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
+  const [price, setPrice] = useState(0);
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const PlacesFormPage = () => {
       setCheckIn(data.checkIn);
       setCheckOut(data.checkOut);
       setMaxGuests(data.maxGuests);
+      setPrice(data.price);
     });
   }, [id]);
   // prevent hardcode
@@ -63,7 +65,7 @@ const PlacesFormPage = () => {
       checkIn,
       checkOut,
       maxGuests,
-      // price,
+      price,
     };
 
     // const axiosInstance = axios.create({
@@ -159,6 +161,17 @@ const PlacesFormPage = () => {
               type="number"
               value={maxGuests}
               onChange={(e) => setMaxGuests(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <h3 className="mt-2 -mb-1 ">Price per night </h3>
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              min={0}
+              required
             />
           </div>
         </div>

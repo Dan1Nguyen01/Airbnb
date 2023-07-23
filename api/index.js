@@ -68,6 +68,9 @@ app.use("/upload", photoMiddleware.array("photos", 100), localUploadRoute);
 const placesRoute = require("./routes/placesRoute");
 app.use("/places", placesRoute);
 
+const bookingRoute = require("./routes/bookingRoute");
+app.use("/booking", bookingRoute);
+
 app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Listening to port`, process.env.PORT);
 });

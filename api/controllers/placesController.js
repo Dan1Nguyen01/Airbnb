@@ -13,6 +13,7 @@ const newPlaces = (req, res) => {
     checkIn,
     checkOut,
     maxGuests,
+    price,
   } = req.body;
   const { token } = req.cookies;
   jwt.verify(token, process.env.JWTSECRET, {}, async (error, userData) => {
@@ -28,6 +29,7 @@ const newPlaces = (req, res) => {
       checkIn,
       checkOut,
       maxGuests,
+      price,
     });
     res.json(placeDoc);
   });
@@ -68,6 +70,7 @@ const updateAPlace = async (req, res) => {
     checkIn,
     checkOut,
     maxGuests,
+    price,
   } = req.body;
 
   jwt.verify(token, process.env.JWTSECRET, {}, async (error, userData) => {
@@ -83,6 +86,7 @@ const updateAPlace = async (req, res) => {
         checkIn,
         checkOut,
         maxGuests,
+        price,
       });
       await placeDoc.save();
       res.status(200).json("ok");
@@ -90,4 +94,8 @@ const updateAPlace = async (req, res) => {
   });
 };
 
-module.exports = { newPlaces, yourPlaces, getAPlace, updateAPlace };
+const places = async (req, res) => {
+  const places = await Place.find();
+  res.status(200).json(places);
+};
+module.exports = { newPlaces, yourPlaces, getAPlace, updateAPlace, places };

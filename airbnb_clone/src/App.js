@@ -9,6 +9,7 @@ import axios from "axios";
 import ProfilePage from "./pages/ProfilePage";
 import PlacesPage from "./pages/PlacesPage";
 import PlacesFormPage from "./pages/PlacesFormPage";
+import SinglePlacePage from "./pages/SinglePlacePage";
 axios.defaults.baseURL = "http://127.0.0.1:8888";
 axios.defaults.withCredentials = true;
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/account/places" element={<PlacesPage />} />
           <Route path="/account/places/new" element={<PlacesFormPage />} />
           <Route path="/account/places/:id" element={<PlacesFormPage />} />
+          <Route path="/place/:id" element={<SinglePlacePage />} />
         </Route>
       </Routes>
     </UserContextProvider>
