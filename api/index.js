@@ -8,6 +8,7 @@ const userLoginRoute = require("./routes/userLoginRoute");
 const userProfile = require("./routes/userProfile");
 const userLogout = require("./routes/userLogout");
 const uploadRoute = require("./routes/uploadRoute");
+// const path = require('./build file/build')
 //setup express app
 const app = express();
 app.use(express.json());
@@ -51,6 +52,8 @@ mongoose
 app.get("/test", (req, res) => {
   res.json("test ok");
 });
+
+app.use(express.static("./build file/build"));
 
 app.use("/api/register", userRegisterRoute);
 app.use("/api/login", userLoginRoute);
