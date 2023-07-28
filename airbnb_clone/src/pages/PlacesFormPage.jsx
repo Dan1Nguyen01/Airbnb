@@ -68,13 +68,6 @@ const PlacesFormPage = () => {
       price,
     };
 
-    // const axiosInstance = axios.create({
-    //   baseUrl: "http://127.0.0.1:8888",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-
     if (!id) {
       // new place
       await axios.post("/places", placeData);

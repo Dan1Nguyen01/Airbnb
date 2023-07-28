@@ -2,6 +2,9 @@ import React from "react";
 
 const PlaceGallery = ({ place }) => {
   const [showAllPhotos, setShowAllPhotos] = React.useState(false);
+
+  const urlBase = "https://airbandb-clone.onrender.com";
+  // const urlBase = "http://127.0.0.1:3000/";
   if (showAllPhotos) {
     return (
       <div className="absolute inset-0 bg-black text-white min-h-screen ">
@@ -32,17 +35,14 @@ const PlaceGallery = ({ place }) => {
           {place?.photo?.length > 0 &&
             place.photo.map((photo) => (
               <div className="flex justify-center">
-                <img
-                  src={`https://airbandb-clone.onrender.com/uploads/${photo}`}
-                  alt=""
-                  className=""
-                />
+                <img src={`/uploads/${photo}`} alt="" className="" />
               </div>
             ))}
         </div>
       </div>
     );
   }
+
   return (
     <div className="relative">
       <div className="grid gap-2 grid-cols-[2fr_1fr_1fr] rounded-3xl overflow-hidden ">
@@ -50,7 +50,7 @@ const PlaceGallery = ({ place }) => {
           {place?.photo?.[0] && (
             <div>
               <img
-                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[0]}`}
+                src={`${urlBase}/uploads/${place?.photo?.[0]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer"
                 onClick={() => setShowAllPhotos(true)}
@@ -62,7 +62,7 @@ const PlaceGallery = ({ place }) => {
         <div className="grid">
           {place?.photo?.[1] && (
             <img
-              src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[1]}`}
+              src={`${urlBase}/uploads/${place?.photo?.[1]}`}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -72,7 +72,7 @@ const PlaceGallery = ({ place }) => {
           <div className="overflow-hidden ">
             {place?.photo?.[2] && (
               <img
-                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[2]}`}
+                src={`${urlBase}/uploads/${place?.photo?.[2]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}
@@ -83,7 +83,7 @@ const PlaceGallery = ({ place }) => {
         <div className="grid ">
           {place?.photo?.[3] && (
             <img
-              src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[3]}`}
+              src={`${urlBase}/uploads/${place?.photo?.[3]}`}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -93,7 +93,7 @@ const PlaceGallery = ({ place }) => {
           <div className="overflow-hidden ">
             {place?.photo?.[4] && (
               <img
-                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[4]}`}
+                src={`${urlBase}/uploads/${place?.photo?.[4]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}

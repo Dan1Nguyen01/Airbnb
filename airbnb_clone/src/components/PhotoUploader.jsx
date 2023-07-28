@@ -51,6 +51,9 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
     ];
     onChange(newAddedPhotos);
   }
+
+  // const urlBase = "http://127.0.0.1:3000/";
+  const urlBase = "https://airbandb-clone.onrender.com";
   return (
     <div>
       <div className="flex gap-2">
@@ -74,7 +77,7 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
             <div key={link} className="relative w-30 h-40">
               <img
                 className="rounded-2xl w-full h-full object-cover "
-                src={`https://airbandb-clone.onrender.com/uploads/` + link}
+                src={`${urlBase}/uploads/` + link}
               />
 
               <button

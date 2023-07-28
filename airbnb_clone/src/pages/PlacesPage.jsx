@@ -10,6 +10,8 @@ const PlacesPage = () => {
       setPlaces(data);
     });
   }, []);
+  const urlBase = "https://airbandb-clone.onrender.com";
+  // const urlBase = "http://127.0.0.1:3000/";
   return (
     <div>
       <AccountNav />
@@ -48,10 +50,7 @@ const PlacesPage = () => {
                   {place.photo?.length > 0 && (
                     <img
                       className="object-cover"
-                      src={
-                        "https://airbandb-clone.onrender.com/uploads/" +
-                        place.photo[0]
-                      }
+                      src={`${urlBase}/uploads/` + place.photo[0]}
                       alt=""
                     />
                   )}
