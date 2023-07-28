@@ -18,7 +18,7 @@ const userProfile = (req, res) => {
       res.status(200).json({ name, email, _id });
     });
   } else {
-    res.json("Token is null");
+    res.status(404).json("Token is null");
   }
 };
 
