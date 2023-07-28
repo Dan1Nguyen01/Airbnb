@@ -9,8 +9,6 @@ const IndexPage = () => {
       setPlaces(response.data);
     });
   }, []);
-  const urlBase = "https://airbandb-clone.onrender.com";
-  // const urlBase = "http://127.0.0.1:3000/";
   return (
     <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
       {places.length > 0 &&
@@ -19,7 +17,10 @@ const IndexPage = () => {
             <div className=" flex bg-gray-500 rounded-2xl mb-2">
               {place.photo?.[0] && (
                 <img
-                  src={`urlBase/uploads/` + place.photo?.[0]}
+                  src={
+                    `https://airbandb-clone.onrender.com/uploads/` +
+                    place.photo?.[0]
+                  }
                   alt=""
                   className="rounded-2xl object-cover aspect-square"
                 />

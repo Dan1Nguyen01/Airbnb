@@ -14,14 +14,11 @@ const ProfilePage = () => {
   }
 
   const { user, setUser, ready } = useContext(UserContext);
+
   async function logout() {
     await axios.post("/logout");
-    setRedirect("/");
     setUser(null);
-  }
-
-  if (!ready) {
-    return "Loading...";
+    setRedirect("/"); // Set the redirect state to the default page "/"
   }
 
   if (ready && !user && !redirect) {
@@ -31,12 +28,14 @@ const ProfilePage = () => {
   if (redirect) {
     return <Navigate to={redirect} />;
   }
+
+  console.log(subpage);
   return (
     <div>
       <AccountNav />
       {subpage === "profile" && (
         <div className="text-center max-w-lg mx-auto">
-          Logged in as {user?.name} ({user?.email})
+          Logged in as {user.name} ({user.email})
           <button className="primary max-w-sm mt-2" onClick={logout}>
             Logout
           </button>

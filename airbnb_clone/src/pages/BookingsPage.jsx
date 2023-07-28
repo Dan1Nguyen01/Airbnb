@@ -12,8 +12,6 @@ const BookingsPage = () => {
     });
   }, []);
 
-  const urlBase = "https://airbandb-clone.onrender.com";
-  // const urlBase = "http://127.0.0.1:3000/";
   return (
     <div>
       <AccountNav />
@@ -27,7 +25,10 @@ const BookingsPage = () => {
                   <div className="w-48">
                     <img
                       className=""
-                      src={"urlBase/uploads/" + booking?.place?.photo[0]}
+                      src={
+                        "https://airbandb-clone.onrender.com/uploads/" +
+                        booking?.place?.photo[0]
+                      }
                       alt=""
                     />
                   </div>

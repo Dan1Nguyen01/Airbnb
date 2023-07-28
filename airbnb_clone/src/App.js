@@ -13,8 +13,7 @@ import SinglePlacePage from "./pages/SinglePlacePage";
 import BookingsPage from "./pages/BookingsPage";
 import BookingPage from "./pages/BookingPage";
 
-// axios.defaults.baseURL = "https://airbandb-clone.onrender.com";
-axios.defaults.baseURL = "http://127.0.0.1:8888/";
+axios.defaults.baseURL = "https://airbandb-clone.onrender.com";
 axios.defaults.withCredentials = true;
 const App = () => {
   return (
