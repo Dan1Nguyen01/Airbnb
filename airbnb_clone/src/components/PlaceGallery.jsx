@@ -33,7 +33,7 @@ const PlaceGallery = ({ place }) => {
             place.photo.map((photo) => (
               <div className="flex justify-center">
                 <img
-                  src={`http://localhost:8888/uploads/${photo}`}
+                  src={`https://airbandb-clone.onrender.com/uploads/${photo}`}
                   alt=""
                   className=""
                 />
