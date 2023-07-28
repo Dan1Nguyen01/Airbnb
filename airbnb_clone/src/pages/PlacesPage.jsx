@@ -48,7 +48,10 @@ const PlacesPage = () => {
                   {place.photo?.length > 0 && (
                     <img
                       className="object-cover"
-                      src={"http://127.0.0.1:8888/uploads/" + place.photo[0]}
+                      src={
+                        "https://airbandb-clone.onrender.com/uploads/" +
+                        place.photo[0]
+                      }
                       alt=""
                     />
                   )}

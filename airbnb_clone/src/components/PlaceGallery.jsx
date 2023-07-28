@@ -50,7 +50,7 @@ const PlaceGallery = ({ place }) => {
           {place?.photo?.[0] && (
             <div>
               <img
-                src={`http://127.0.0.1:8888/uploads/${place?.photo?.[0]}`}
+                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[0]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer"
                 onClick={() => setShowAllPhotos(true)}
@@ -62,7 +62,7 @@ const PlaceGallery = ({ place }) => {
         <div className="grid">
           {place?.photo?.[1] && (
             <img
-              src={`http://127.0.0.1:8888/uploads/${place?.photo?.[1]}`}
+              src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[1]}`}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -72,7 +72,7 @@ const PlaceGallery = ({ place }) => {
           <div className="overflow-hidden ">
             {place?.photo?.[2] && (
               <img
-                src={`http://127.0.0.1:8888/uploads/${place?.photo?.[2]}`}
+                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[2]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}
@@ -83,7 +83,7 @@ const PlaceGallery = ({ place }) => {
         <div className="grid ">
           {place?.photo?.[3] && (
             <img
-              src={`http://127.0.0.1:8888/uploads/${place?.photo?.[3]}`}
+              src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[3]}`}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -93,7 +93,7 @@ const PlaceGallery = ({ place }) => {
           <div className="overflow-hidden ">
             {place?.photo?.[4] && (
               <img
-                src={`http://127.0.0.1:8888/uploads/${place?.photo?.[4]}`}
+                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[4]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}

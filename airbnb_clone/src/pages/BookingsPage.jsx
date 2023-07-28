@@ -26,7 +26,7 @@ const BookingsPage = () => {
                     <img
                       className=""
                       src={
-                        "http://127.0.0.1:8888/uploads/" +
+                        "https://airbandb-clone.onrender.com/uploads/" +
                         booking?.place?.photo[0]
                       }
                       alt=""
