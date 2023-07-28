@@ -16,7 +16,7 @@ app.use(express.json());
 // let’s you use the cookieParser in your application
 app.use(cookieParser());
 
-app.use("/api/uploads", express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(
   cors({
     credentials: true,
@@ -55,24 +55,24 @@ app.get("/test", (req, res) => {
 
 app.use(express.static("./build file/build"));
 
-app.use("/api/register", userRegisterRoute);
-app.use("/api/login", userLoginRoute);
-app.use("/api/profile", userProfile);
-app.use("/api/logout", userLogout);
-app.use("/api/upload-by-link", uploadRoute);
+app.use("/register", userRegisterRoute);
+app.use("/login", userLoginRoute);
+app.use("/profile", userProfile);
+app.use("/logout", userLogout);
+app.use("/upload-by-link", uploadRoute);
 
 //upload from local
 const localUploadRoute = require("./routes/localUploadRoute");
 const multer = require("multer");
 const photoMiddleware = multer({ dest: "uploads" });
-app.use("/api/upload", photoMiddleware.array("photos", 100), localUploadRoute);
+app.use("/upload", photoMiddleware.array("photos", 100), localUploadRoute);
 
 //
 const placesRoute = require("./routes/placesRoute");
-app.use("/api/places", placesRoute);
+app.use("/places", placesRoute);
 
 const bookingRoute = require("./routes/bookingRoute");
-app.use("/api/booking", bookingRoute);
+app.use("/booking", bookingRoute);
 
 app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Listening to port`, process.env.PORT);

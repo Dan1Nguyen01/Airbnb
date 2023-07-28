@@ -9,7 +9,7 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
       // If the input is empty or contains only whitespace, don't proceed
       return;
     }
-    const { data: filename } = await axios.post("/api/upload-by-link", {
+    const { data: filename } = await axios.post("/upload-by-link", {
       link: photoLink,
     });
     onChange((prev) => {
@@ -27,7 +27,7 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
     }
 
     axios
-      .post("/api/upload", data, {
+      .post("/upload", data, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
@@ -74,7 +74,7 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
             <div key={link} className="relative w-30 h-40">
               <img
                 className="rounded-2xl w-full h-full object-cover "
-                src={`http://127.0.0.1:8888/api/uploads/` + link}
+                src={`http://127.0.0.1:8888/uploads/` + link}
               />
 
               <button
