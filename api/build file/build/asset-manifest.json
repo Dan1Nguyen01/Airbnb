@@ -1,6 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e54c6a77.css",
+<<<<<<< HEAD
     "main.js": "/static/js/main.f1b07d5e.js",
     "index.html": "/index.html",
     "main.e54c6a77.css.map": "/static/css/main.e54c6a77.css.map",
@@ -9,5 +10,15 @@
   "entrypoints": [
     "static/css/main.e54c6a77.css",
     "static/js/main.f1b07d5e.js"
+=======
+    "main.js": "/static/js/main.5ebd4c80.js",
+    "index.html": "/index.html",
+    "main.e54c6a77.css.map": "/static/css/main.e54c6a77.css.map",
+    "main.5ebd4c80.js.map": "/static/js/main.5ebd4c80.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e54c6a77.css",
+    "static/js/main.5ebd4c80.js"
+>>>>>>> parent of 9395060 (updated)
   ]
 }
