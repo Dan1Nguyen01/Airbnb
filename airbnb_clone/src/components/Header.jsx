@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 const Header = () => {
   const { user } = useContext(UserContext);
-  console.log("user id " + user?._id);
+
   return (
     <header className=" flex justify-between">
       <Link to="/" className="flex items-center gap-1">
@@ -48,9 +48,7 @@ const Header = () => {
         </button>
       </div>
       <Link
-        to={
-          user?._id !== null || user?._id !== undefined ? "/account" : "/login"
-        }
+        to={user ? "/account" : "/login"}
         className="flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-300"
       >
         <svg
