@@ -8,29 +8,34 @@ import AccountNav from "../components/AccountNav";
 const ProfilePage = () => {
   let { subpage } = useParams();
   const [redirect, setRedirect] = useState(null);
-
-  if (subpage === undefined) {
-    subpage = "profile";
-  }
-
   const { user, setUser, ready } = useContext(UserContext);
 
-  async function logout(e) {
-    e.preventDefault();
-    await axios.post("/logout");
-    setUser(null);
-    setRedirect("/"); // Set the redirect state to the default page "/"
-  }
+  useEffect(() => {
+    if (ready && !user) {
+      setRedirect("/login");
+    }
+  }, [user, ready]);
 
-  if (ready && !user && !redirect) {
-    return <Navigate to={"/login"} />;
+  if (!ready) {
+    // You can show a loading spinner here while waiting for the user data to be fetched
+    return <div>Loading...</div>;
   }
 
   if (redirect) {
     return <Navigate to={redirect} />;
   }
 
-  console.log(subpage);
+  if (subpage === undefined) {
+    subpage = "profile";
+  }
+
+  const logout = async (e) => {
+    e.preventDefault();
+    await axios.post("/logout");
+    setUser(null);
+    setRedirect("/"); // Set the redirect state to the default page "/"
+  };
+
   return (
     <div>
       <AccountNav />
