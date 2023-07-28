@@ -1,41 +1,35 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
-import { Link, Navigate, redirect, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PlacesPage from "./PlacesPage";
 import AccountNav from "../components/AccountNav";
 
 const ProfilePage = () => {
-  let { subpage } = useParams();
   const [redirect, setRedirect] = useState(null);
-  const { user, setUser, ready } = useContext(UserContext);
+  const { ready, user, setUser } = useContext(UserContext);
+  let { subpage } = useParams();
+  if (subpage === undefined) {
+    subpage = "profile";
+  }
 
-  useEffect(() => {
-    if (ready && !user) {
-      setRedirect("/login");
-    }
-  }, [user, ready]);
+  async function logout() {
+    await axios.post("/logout");
+    setRedirect("/");
+    setUser(null);
+  }
 
   if (!ready) {
-    // You can show a loading spinner here while waiting for the user data to be fetched
-    return <div>Loading...</div>;
+    return "Loading...";
+  }
+
+  if (ready && !user && !redirect) {
+    return <Navigate to={"/login"} />;
   }
 
   if (redirect) {
     return <Navigate to={redirect} />;
   }
-
-  if (subpage === undefined) {
-    subpage = "profile";
-  }
-
-  const logout = async (e) => {
-    e.preventDefault();
-    await axios.post("/logout");
-    setUser(null);
-    setRedirect("/"); // Set the redirect state to the default page "/"
-  };
-
   return (
     <div>
       <AccountNav />
