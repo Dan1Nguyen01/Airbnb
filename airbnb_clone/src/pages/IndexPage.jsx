@@ -17,7 +17,10 @@ const IndexPage = () => {
             <div className=" flex bg-gray-500 rounded-2xl mb-2">
               {place.photo?.[0] && (
                 <img
-                  src={`http://localhost:8888/uploads/` + place.photo?.[0]}
+                  src={
+                    `https://airbandb-clone.onrender.com/uploads/` +
+                    place.photo?.[0]
+                  }
                   alt=""
                   className="rounded-2xl object-cover aspect-square"
                 />
