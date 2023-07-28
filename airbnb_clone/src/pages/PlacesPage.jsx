@@ -6,7 +6,7 @@ import AccountNav from "../components/AccountNav";
 const PlacesPage = () => {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
-    axios.get("/places/user-places").then(({ data }) => {
+    axios.get("/api/places/user-places").then(({ data }) => {
       setPlaces(data);
     });
   }, []);
@@ -48,7 +48,9 @@ const PlacesPage = () => {
                   {place.photo?.length > 0 && (
                     <img
                       className="object-cover"
-                      src={"http://127.0.0.1:8888/uploads/" + place.photo[0]}
+                      src={
+                        "http://127.0.0.1:8888/api/uploads/" + place.photo[0]
+                      }
                       alt=""
                     />
                   )}

@@ -7,7 +7,7 @@ import BookingDates from "../components/BookingDates";
 const BookingsPage = () => {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
-    axios.get("/booking").then((response) => {
+    axios.get("/api/booking").then((response) => {
       setBookings(response.data);
     });
   }, []);
@@ -26,7 +26,7 @@ const BookingsPage = () => {
                     <img
                       className=""
                       src={
-                        "http://127.0.0.1:8888/uploads/" +
+                        "http://127.0.0.1:8888/api/uploads/" +
                         booking?.place?.photo[0]
                       }
                       alt=""

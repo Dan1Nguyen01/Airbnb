@@ -16,7 +16,7 @@ const ProfilePage = () => {
   const { user, setUser, ready } = useContext(UserContext);
 
   async function logout() {
-    await axios.post("/logout");
+    await axios.post("/api/logout");
     setUser(null);
     setRedirect("/"); // Set the redirect state to the default page "/"
   }

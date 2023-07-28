@@ -5,7 +5,11 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
 
   async function addPhotoByLink(e) {
     e.preventDefault();
-    const { data: filename } = await axios.post("/upload-by-link", {
+    if (!photoLink.trim()) {
+      // If the input is empty or contains only whitespace, don't proceed
+      return;
+    }
+    const { data: filename } = await axios.post("/api/upload-by-link", {
       link: photoLink,
     });
     onChange((prev) => {
@@ -23,7 +27,7 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
     }
 
     axios
-      .post("/upload", data, {
+      .post("/api/upload", data, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
@@ -67,11 +71,10 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
       <div className="mt-2 gap-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {addedPhotos.length > 0 &&
           addedPhotos.map((link) => (
-            // <div key={link} className="h-32 flex">
             <div key={link} className="relative w-30 h-40">
               <img
                 className="rounded-2xl w-full h-full object-cover "
-                src={`http://127.0.0.1:8888/uploads/` + link}
+                src={`http://127.0.0.1:8888/api/uploads/` + link}
               />
 
               <button

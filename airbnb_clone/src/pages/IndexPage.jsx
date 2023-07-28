@@ -5,7 +5,7 @@ const IndexPage = () => {
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    axios.get("/places").then((response) => {
+    axios.get("/api/places").then((response) => {
       setPlaces(response.data);
     });
   }, []);
@@ -17,7 +17,7 @@ const IndexPage = () => {
             <div className=" flex bg-gray-500 rounded-2xl mb-2">
               {place.photo?.[0] && (
                 <img
-                  src={`http://localhost:8888/uploads/` + place.photo?.[0]}
+                  src={`http://localhost:8888/api/uploads/` + place.photo?.[0]}
                   alt=""
                   className="rounded-2xl object-cover aspect-square"
                 />

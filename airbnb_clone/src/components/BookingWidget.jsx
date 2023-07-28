@@ -31,7 +31,7 @@ const BookingWidget = ({ place }) => {
   const bookYourPlace = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/booking", {
+      const response = await axios.post("/api/booking", {
         place: place._id,
         checkIn,
         checkOut,
