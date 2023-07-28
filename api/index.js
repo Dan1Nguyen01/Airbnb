@@ -20,7 +20,7 @@ app.use("/api/uploads", express.static(__dirname + "/uploads"));
 app.use(
   cors({
     credentials: true,
-    origin: "http://127.0.0.1:3000",
+    origin: "https://neon-pithivier-8e96ef.netlify.app/",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
