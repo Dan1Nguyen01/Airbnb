@@ -74,7 +74,9 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
             <div key={link} className="relative w-30 h-40">
               <img
                 className="rounded-2xl w-full h-full object-cover "
-                src={`https://airbandb-clone.onrender.com/uploads/` + link}
+                src={
+                  `https://tame-lime-seagull-toga.cyclic.app/uploads/` + link
+                }
               />
 
               <button
