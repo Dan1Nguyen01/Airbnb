@@ -20,7 +20,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(
   cors({
     credentials: true,
-    origin: "https://neon-pithivier-8e96ef.netlify.app/",
+    origin: "https://tame-lime-seagull-toga.cyclic.app",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   res.header(
     "Access-Control-Allow-Origin",
-    "https://airbandb-clone.onrender.com"
+    "https://tame-lime-seagull-toga.cyclic.app"
   ); // Replace with your frontend origin
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE"); // Include PUT in the allowed methods
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");

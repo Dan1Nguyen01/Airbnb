@@ -26,7 +26,7 @@ const BookingsPage = () => {
                     <img
                       className=""
                       src={
-                        "https://airbandb-clone.onrender.com/uploads/" +
+                        "https://tame-lime-seagull-toga.cyclic.app/uploads/" +
                         booking?.place?.photo[0]
                       }
                       alt=""

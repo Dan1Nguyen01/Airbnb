@@ -33,7 +33,7 @@ const PlaceGallery = ({ place }) => {
             place.photo.map((photo) => (
               <div className="flex justify-center">
                 <img
-                  src={`https://airbandb-clone.onrender.com/uploads/${photo}`}
+                  src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${photo}`}
                   alt=""
                   className=""
                 />
@@ -50,7 +50,7 @@ const PlaceGallery = ({ place }) => {
           {place?.photo?.[0] && (
             <div>
               <img
-                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[0]}`}
+                src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[0]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer"
                 onClick={() => setShowAllPhotos(true)}
@@ -62,7 +62,7 @@ const PlaceGallery = ({ place }) => {
         <div className="grid">
           {place?.photo?.[1] && (
             <img
-              src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[1]}`}
+              src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[1]}`}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -72,7 +72,7 @@ const PlaceGallery = ({ place }) => {
           <div className="overflow-hidden ">
             {place?.photo?.[2] && (
               <img
-                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[2]}`}
+                src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[2]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}
@@ -83,7 +83,7 @@ const PlaceGallery = ({ place }) => {
         <div className="grid ">
           {place?.photo?.[3] && (
             <img
-              src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[3]}`}
+              src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[3]}`}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -93,7 +93,7 @@ const PlaceGallery = ({ place }) => {
           <div className="overflow-hidden ">
             {place?.photo?.[4] && (
               <img
-                src={`https://airbandb-clone.onrender.com/uploads/${place?.photo?.[4]}`}
+                src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[4]}`}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}

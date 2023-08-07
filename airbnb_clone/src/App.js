@@ -13,7 +13,7 @@ import SinglePlacePage from "./pages/SinglePlacePage";
 import BookingsPage from "./pages/BookingsPage";
 import BookingPage from "./pages/BookingPage";
 
-axios.defaults.baseURL = "https://airbandb-clone.onrender.com";
+axios.defaults.baseURL = "https://tame-lime-seagull-toga.cyclic.app";
 axios.defaults.withCredentials = true;
 const App = () => {
   return (

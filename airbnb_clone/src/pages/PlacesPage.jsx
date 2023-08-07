@@ -49,7 +49,7 @@ const PlacesPage = () => {
                     <img
                       className="object-cover"
                       src={
-                        "https://airbandb-clone.onrender.com/uploads/" +
+                        "https://tame-lime-seagull-toga.cyclic.app/uploads/" +
                         place.photo[0]
                       }
                       alt=""

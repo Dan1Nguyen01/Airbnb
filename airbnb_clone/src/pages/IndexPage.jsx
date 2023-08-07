@@ -18,7 +18,7 @@ const IndexPage = () => {
               {place.photo?.[0] && (
                 <img
                   src={
-                    `https://airbandb-clone.onrender.com/uploads/` +
+                    `https://tame-lime-seagull-toga.cyclic.app/uploads/` +
                     place.photo?.[0]
                   }
                   alt=""
