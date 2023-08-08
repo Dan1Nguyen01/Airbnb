@@ -14,6 +14,7 @@ import BookingsPage from "./pages/BookingsPage";
 import BookingPage from "./pages/BookingPage";
 
 axios.defaults.baseURL = "https://airbandb-clone.onrender.com";
+// axios.defaults.baseURL = "http://localhost:8888";
 axios.defaults.withCredentials = true;
 const App = () => {
   return (

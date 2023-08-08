@@ -22,6 +22,7 @@ app.use(
   cors({
     credentials: true,
     origin: "https://airbandb-clone.onrender.com",
+    // origin: "http://localhost:3000/",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
@@ -31,7 +32,8 @@ app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
     "https://airbandb-clone.onrender.com"
-  ); // Replace with your frontend origin
+    // "http://localhost:3000/"
+  );
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE"); // Include PUT in the allowed methods
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", true);
@@ -64,25 +66,6 @@ app.use("/login", userLoginRoute);
 app.use("/profile", userProfile);
 app.use("/logout", userLogout);
 
-//upload by link
-const imageDownloader = require("image-downloader");
-app.use("/upload-by-link", async (req, res) => {
-  const { link } = req.body;
-  const newName = `photo` + Date.now() + ".jpg";
-  await imageDownloader.image({
-    url: link,
-    dest: "/tmp/" + newName,
-  });
-  const url = await uploadToS3(
-    "/tmp/" + newName,
-    newName,
-    mime.lookup("/tmp/" + newName)
-  );
-  res.json(url);
-});
-
-//upload from local
-
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 async function uploadToS3(path, originFileName, mimetype) {
   const client = new S3Client({
@@ -107,19 +90,40 @@ async function uploadToS3(path, originFileName, mimetype) {
   );
   return `https://${process.env.BUCKET}.s3.amazonaws.com/${newFilename}`;
 }
+//upload by link
+const imageDownloader = require("image-downloader");
+app.post("/upload-by-link", async (req, res) => {
+  const { link } = req.body;
+  const newName = `photo` + Date.now() + ".jpg";
+  await imageDownloader.image({
+    url: link,
+    dest: "/tmp/" + newName,
+  });
+  const url = await uploadToS3(
+    "/tmp/" + newName,
+    newName,
+    mime.lookup("/tmp/" + newName)
+  );
+  console.log(url);
+  res.json(url);
+});
+
+//upload from local
 
 const photoMiddleware = multer({ dest: "/tmp" });
-app.use("/upload", photoMiddleware.array("photo", 100), async (req, res) => {
+
+app.post("/upload", photoMiddleware.array("photos", 100), async (req, res) => {
   const uploadedFiles = [];
-  for (i = 0; i < req.files.length; i++) {
-    const { path, originalname, minetype } = req.files[i];
-    const url = await uploadToS3(path, originalname, minetype);
+  for (let i = 0; i < req.files.length; i++) {
+    const { path, originalname, mimetype } = req.files[i];
+    const url = await uploadToS3(path, originalname, mimetype);
     uploadedFiles.push(url);
+    console.log(url);
   }
+
   res.json(uploadedFiles);
 });
 
-//
 const placesRoute = require("./routes/placesRoute");
 app.use("/places", placesRoute);
 
@@ -127,6 +131,6 @@ const bookingRoute = require("./routes/bookingRoute");
 
 app.use("/booking", bookingRoute);
 
-app.listen(process.env.PORT, "0.0.0.0", () => {
+app.listen(process.env.PORT || "0.0.0.0", () => {
   console.log(`Listening to port`, process.env.PORT);
 });
