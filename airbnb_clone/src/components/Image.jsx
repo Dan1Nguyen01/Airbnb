@@ -1,7 +1,7 @@
 import React from "react";
 
 const Image = ({ src, ...rest }) => {
-  const PF = "airbnb-flzpg1snd-dan1nguyen01.vercel.app/uploads/";
+  const PF = "https://airbandb-clone.onrender.com/uploads/";
   src = src && src.includes(`https://`) ? src : `${PF}${src}`;
   return <img {...rest} src={src} alt="" />;
 };
