@@ -7,8 +7,9 @@ const userRegisterRoute = require("./routes/userRegisterRoute");
 const userLoginRoute = require("./routes/userLoginRoute");
 const userProfile = require("./routes/userProfile");
 const userLogout = require("./routes/userLogout");
-const uploadRoute = require("./routes/uploadRoute");
-// const path = require('./build file/build')
+const multer = require("multer");
+const fs = require("fs");
+const mime = require("mime-types");
 //setup express app
 const app = express();
 app.use(express.json());
@@ -41,7 +42,6 @@ app.use((req, res, next) => {
   }
 });
 
-mongoose.set("strictQuery", true);
 mongoose
   .connect(
     process.env.MONGO_URL // { useNewParser: true }
@@ -52,6 +52,7 @@ mongoose
   .catch((error) => {
     console.error("Database connect fail, error: " + error);
   });
+
 app.get("/test", (req, res) => {
   res.json("test ok");
 });
@@ -62,19 +63,68 @@ app.use("/register", userRegisterRoute);
 app.use("/login", userLoginRoute);
 app.use("/profile", userProfile);
 app.use("/logout", userLogout);
-app.use("/upload-by-link", uploadRoute);
+
+//upload by link
+const imageDownloader = require("image-downloader");
+app.use("/upload-by-link", async (req, res) => {
+  const { link } = req.body;
+  const newName = `photo` + Date.now() + ".jpg";
+  await imageDownloader.image({
+    url: link,
+    dest: "/tmp/" + newName,
+  });
+  const url = await uploadToS3(
+    "/tmp/" + newName,
+    newName,
+    mime.lookup("/tmp/" + newName)
+  );
+  res.json(url);
+});
 
 //upload from local
-const localUploadRoute = require("./routes/localUploadRoute");
-const multer = require("multer");
-const photoMiddleware = multer({ dest: "uploads" });
-app.use("/upload", photoMiddleware.array("photos", 100), localUploadRoute);
+
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+async function uploadToS3(path, originFileName, mimetype) {
+  const client = new S3Client({
+    region: "ca-central-1",
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    },
+  });
+  const parts = originFileName.split(".");
+  const ext = parts[parts.length - 1];
+  const newFilename = Date.now() + `.` + ext;
+
+  const data = await client.send(
+    new PutObjectCommand({
+      Bucket: process.env.BUCKET,
+      Body: fs.readFileSync(path),
+      Key: newFilename,
+      ContentType: mimetype,
+      ACL: "public-read",
+    })
+  );
+  return `https://${process.env.BUCKET}.s3.amazonaws.com/${newFilename}`;
+}
+
+const photoMiddleware = multer({ dest: "/tmp" });
+app.use("/upload", photoMiddleware.array("photo", 100), async (req, res) => {
+  const uploadedFiles = [];
+  for (i = 0; i < req.files.length; i++) {
+    const { path, originalname, minetype } = req.files[i];
+    const url = await uploadToS3(path, originalname, minetype);
+    uploadedFiles.push(url);
+  }
+  res.json(uploadedFiles);
+});
 
 //
 const placesRoute = require("./routes/placesRoute");
 app.use("/places", placesRoute);
 
 const bookingRoute = require("./routes/bookingRoute");
+
 app.use("/booking", bookingRoute);
 
 app.listen(process.env.PORT, "0.0.0.0", () => {

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { format, differenceInCalendarDays } from "date-fns";
 import BookingDates from "../components/BookingDates";
+import Image from "../components/Image";
 const BookingsPage = () => {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
@@ -23,14 +24,7 @@ const BookingsPage = () => {
               {booking?.place?.photo?.length > 0 && (
                 <div className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden">
                   <div className="w-48">
-                    <img
-                      className=""
-                      src={
-                        "https://tame-lime-seagull-toga.cyclic.app/uploads/" +
-                        booking?.place?.photo[0]
-                      }
-                      alt=""
-                    />
+                    <Image className="" src={booking?.place?.photo[0]} alt="" />
                   </div>
                   <div className="py-3 pr-3   grow">
                     <h2 className="text-xl">{booking?.place?.title}</h2>

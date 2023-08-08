@@ -1,0 +1,18 @@
+{
+  "version": 2,
+
+  "builds": [{ "src": "airbnb_clone/package.json", "use": "@vercel/node" }],
+
+  "routes": [{ "src": "/api/(.*)", "dest": "/api/index.js" }],
+
+  "frameworks": {
+    "react": "airbnb_clone/package.json"
+  },
+
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/airbnb_clone/$1"
+    }
+  ]
+}

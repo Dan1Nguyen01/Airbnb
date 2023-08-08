@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "./Image";
 
 const PlaceGallery = ({ place }) => {
   const [showAllPhotos, setShowAllPhotos] = React.useState(false);
@@ -32,11 +33,7 @@ const PlaceGallery = ({ place }) => {
           {place?.photo?.length > 0 &&
             place.photo.map((photo) => (
               <div className="flex justify-center">
-                <img
-                  src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${photo}`}
-                  alt=""
-                  className=""
-                />
+                <Image src={photo} alt="" className="" />
               </div>
             ))}
         </div>
@@ -49,8 +46,8 @@ const PlaceGallery = ({ place }) => {
         <div className="">
           {place?.photo?.[0] && (
             <div>
-              <img
-                src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[0]}`}
+              <Image
+                src={place?.photo?.[0]}
                 alt=""
                 className="aspect-square object-cover cursor-pointer"
                 onClick={() => setShowAllPhotos(true)}
@@ -61,8 +58,8 @@ const PlaceGallery = ({ place }) => {
 
         <div className="grid">
           {place?.photo?.[1] && (
-            <img
-              src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[1]}`}
+            <Image
+              src={place?.photo?.[1]}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -71,8 +68,8 @@ const PlaceGallery = ({ place }) => {
 
           <div className="overflow-hidden ">
             {place?.photo?.[2] && (
-              <img
-                src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[2]}`}
+              <Image
+                src={place?.photo?.[2]}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}
@@ -82,8 +79,8 @@ const PlaceGallery = ({ place }) => {
         </div>
         <div className="grid ">
           {place?.photo?.[3] && (
-            <img
-              src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[3]}`}
+            <Image
+              src={place?.photo?.[3]}
               alt=""
               className="aspect-square object-cover cursor-pointer"
               onClick={() => setShowAllPhotos(true)}
@@ -92,8 +89,8 @@ const PlaceGallery = ({ place }) => {
 
           <div className="overflow-hidden ">
             {place?.photo?.[4] && (
-              <img
-                src={`https://tame-lime-seagull-toga.cyclic.app/uploads/${place?.photo?.[4]}`}
+              <Image
+                src={place?.photo?.[4]}
                 alt=""
                 className="aspect-square object-cover cursor-pointer "
                 onClick={() => setShowAllPhotos(true)}

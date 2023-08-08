@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Image from "./Image";
 const PhotoUploader = ({ addedPhotos, onChange }) => {
   const [photoLink, setPhotoLink] = useState("");
 
@@ -72,11 +73,9 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
         {addedPhotos.length > 0 &&
           addedPhotos.map((link) => (
             <div key={link} className="relative w-30 h-40">
-              <img
+              <Image
                 className="rounded-2xl w-full h-full object-cover "
-                src={
-                  `https://tame-lime-seagull-toga.cyclic.app/uploads/` + link
-                }
+                src={link}
               />
 
               <button

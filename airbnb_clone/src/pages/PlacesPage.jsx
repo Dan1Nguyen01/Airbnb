@@ -3,6 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import axios from "axios";
 import PlacesFormPage from "./PlacesFormPage";
 import AccountNav from "../components/AccountNav";
+import Image from "../components/Image";
 const PlacesPage = () => {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
@@ -46,12 +47,9 @@ const PlacesPage = () => {
               >
                 <div className="flex w-32 h-32 bg-gray-300 grow shrink-0">
                   {place.photo?.length > 0 && (
-                    <img
+                    <Image
                       className="object-cover"
-                      src={
-                        "https://tame-lime-seagull-toga.cyclic.app/uploads/" +
-                        place.photo[0]
-                      }
+                      src={place.photo[0]}
                       alt=""
                     />
                   )}
