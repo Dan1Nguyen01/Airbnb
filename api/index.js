@@ -95,14 +95,15 @@ const imageDownloader = require("image-downloader");
 app.post("/upload-by-link", async (req, res) => {
   const { link } = req.body;
   const newName = `photo` + Date.now() + ".jpg";
+  const destPath = "/tmp/" + newName;
   await imageDownloader.image({
     url: link,
-    dest: "/tmp/" + newName,
+    dest: destPath
   });
   const url = await uploadToS3(
-    "/tmp/" + newName,
+    destPath,
     newName,
-    mime.lookup("/tmp/" + newName)
+    mime.lookup(destPath)
   );
   console.log(url);
   res.json(url);
