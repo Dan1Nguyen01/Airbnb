@@ -110,7 +110,7 @@ app.post("/upload-by-link", async (req, res) => {
 
 //upload from local
 
-const photoMiddleware = multer({ dest: "/tmp" });
+const photoMiddleware = multer({ dest: "/temp" });
 
 app.post("/upload", photoMiddleware.array("photos", 100), async (req, res) => {
   const uploadedFiles = [];
